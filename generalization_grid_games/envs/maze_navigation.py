@@ -19,8 +19,8 @@ DOWN_ARROW = 'down_arrow'
 ALL_TOKENS = [EMPTY, GOAL, AGENT, WALL, LEFT_ARROW, RIGHT_ARROW, UP_ARROW, DOWN_ARROW]
 
 TOKEN_IMAGES = {
-    AGENT : plt.imread(get_asset_path('stickfigure.png')),
-    GOAL : plt.imread(get_asset_path('fire.png')),
+    AGENT : plt.imread(get_asset_path('mice.png')),
+    GOAL : plt.imread(get_asset_path('cheese.jpg')),
     WALL : plt.imread(get_asset_path('block.jpg')),
 }
 
@@ -30,7 +30,7 @@ class MazeNavigation(GeneralizationGridGame):
 
     num_tokens = len(ALL_TOKENS)
     hand_icon = HAND_ICON_IMAGE
-    fig_scale = 1.2
+    fig_scale = 1.1
 
     @staticmethod
     def transition(layout, action):
