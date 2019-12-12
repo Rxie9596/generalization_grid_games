@@ -31,4 +31,10 @@ for i in range(20):
         entry_point='generalization_grid_games.envs:ReachForTheStarGymEnv{}'.format(i),
     )
 
+for i in range(3):
+    register(
+        id='MazeNavigation{}-v0'.format(i),
+        entry_point='generalization_grid_games.envs:MazeNavigationGymEnv{}'.format(i),
+    )
+
 

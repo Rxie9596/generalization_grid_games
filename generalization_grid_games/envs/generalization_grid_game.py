@@ -71,6 +71,11 @@ class GeneralizationGridGame(gym.Env):
         next_layout = self.transition(self.current_layout, action)
         reward = self.compute_reward(self.current_layout, action, next_layout)
         done = self.compute_done(next_layout)
+
+        if self.interactive:
+            print('reward: ' + str(reward))
+            print('done: ' + str(done))
+
         self.current_layout = next_layout
         
         if self.record_video:
