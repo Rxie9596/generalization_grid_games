@@ -1,4 +1,5 @@
 from .generalization_grid_game import GeneralizationGridGame, create_gym_envs
+from .generalization_grid_game import GeneralizationGridGame, create_gym_envs
 from .utils import get_asset_path
 
 from matplotlib.offsetbox import OffsetImage, AnnotationBbox
@@ -30,7 +31,7 @@ class MazeNavigation(GeneralizationGridGame):
 
     num_tokens = len(ALL_TOKENS)
     hand_icon = HAND_ICON_IMAGE
-    fig_scale = 1.3
+    fig_scale = 1.1
 
     @staticmethod
     def transition(layout, action):
