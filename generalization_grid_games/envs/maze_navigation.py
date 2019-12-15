@@ -16,13 +16,15 @@ LEFT_ARROW = 'left_arrow'
 RIGHT_ARROW = 'right_arrow'
 UP_ARROW = 'up_arrow'
 DOWN_ARROW = 'down_arrow'
+BARRIER = "barrier"
 
-ALL_TOKENS = [EMPTY, GOAL, AGENT, WALL, LEFT_ARROW, RIGHT_ARROW, UP_ARROW, DOWN_ARROW]
+ALL_TOKENS = [EMPTY, GOAL, AGENT, WALL, LEFT_ARROW, RIGHT_ARROW, UP_ARROW, DOWN_ARROW, BARRIER]
 
 TOKEN_IMAGES = {
     AGENT : plt.imread(get_asset_path('mice.png')),
     GOAL : plt.imread(get_asset_path('cheese.jpg')),
     WALL : plt.imread(get_asset_path('block.jpg')),
+    BARRIER : plt.imread(get_asset_path('dirt.jpg')),
 }
 
 HAND_ICON_IMAGE = plt.imread(get_asset_path('hand_icon.png'))
@@ -47,6 +49,8 @@ class MazeNavigation(GeneralizationGridGame):
             MazeNavigation.step_move_in_direction(new_layout, (0, -1), AGENT)
         elif token == RIGHT_ARROW:
             MazeNavigation.step_move_in_direction(new_layout, (0, 1), AGENT)
+        elif token == BARRIER:
+            new_layout[r, c] = EMPTY
 
         return new_layout
 
@@ -146,7 +150,9 @@ U = UP_ARROW
 D = DOWN_ARROW
 L = LEFT_ARROW
 R = RIGHT_ARROW
+B = BARRIER
 
+# Training
 layout0 = [
     [W, W, W, W, W, W, W],
     [W, E, E, E, E, E, W],
@@ -160,7 +166,7 @@ layout1 = [
     [W, W, W, W, W, W, W],
     [W, E, E, E, E, E, W],
     [W, E, W, E, W, E, W],
-    [W, E, W, E, W, E, W],
+    [W, E, B, E, B, E, W],
     [W, E, W, A, W, G, W],
     [W, W, W, W, W, W, W],
     [W, W, W, R, L, U, D],
@@ -168,8 +174,8 @@ layout1 = [
 layout2 = [
     [W, W, W, W, W, W, W],
     [W, E, E, E, E, E, W],
+    [W, E, B, E, B, E, W],
     [W, E, W, E, W, E, W],
-    [W, E, E, E, E, E, W],
     [W, G, W, A, W, E, W],
     [W, W, W, W, W, W, W],
     [W, W, W, R, L, U, D],
@@ -178,114 +184,45 @@ layout3 = [
     [W, W, W, W, W, W, W],
     [W, E, E, E, E, E, W],
     [W, E, W, E, W, E, W],
-    [W, E, E, E, E, E, W],
-    [W, E, W, A, W, G, W],
+    [W, E, W, E, W, E, W],
+    [W, E, B, A, B, G, W],
     [W, W, W, W, W, W, W],
     [W, W, W, R, L, U, D],
 ]
 layout4 = [
-    [W, W, W, W, W, W, W],
-    [W, E, E, E, E, E, W],
-    [W, E, E, E, E, E, W],
-    [W, E, W, E, W, E, W],
-    [W, E, W, A, W, G, W],
-    [W, W, W, W, W, W, W],
-    [W, W, W, R, L, U, D],
+    [W, W, W, W, W, W, W, W, W],
+    [W, E, E, E, E, E, E, E, W],
+    [W, E, W, W, E, W, W, E, W],
+    [W, E, W, W, E, W, W, E, W],
+    [W, E, W, W, E, W, W, E, W],
+    [W, E, W, W, E, W, W, E, W],
+    [W, E, W, W, A, W, W, G, W],
+    [W, W, W, W, W, W, W, W, W],
+    [W, W, W, W, W, R, L, U, D],
 ]
 layout5 = [
-    [W, W, W, W, W, W, W],
-    [W, E, E, E, E, E, W],
-    [W, E, E, E, E, E, W],
-    [W, E, W, E, W, E, W],
-    [W, G, W, A, W, E, W],
-    [W, W, W, W, W, W, W],
-    [W, W, W, R, L, U, D],
+    [W, W, W, W, W, W, W, W, W],
+    [W, E, E, E, E, E, E, E, W],
+    [W, E, W, W, E, W, W, E, W],
+    [W, E, W, W, E, W, W, E, W],
+    [W, E, B, B, E, B, B, E, W],
+    [W, E, W, W, E, W, W, E, W],
+    [W, G, W, W, A, W, W, E, W],
+    [W, W, W, W, W, W, W, W, W],
+    [W, W, W, W, W, R, L, U, D],
 ]
 layout6 = [
-    [W, W, W, W, W, W, W],
-    [W, E, E, E, E, E, W],
-    [W, E, W, E, W, E, W],
-    [W, E, W, E, W, E, W],
-    [W, E, E, A, E, G, W],
-    [W, W, W, W, W, W, W],
-    [W, W, W, R, L, U, D],
+    [W, W, W, W, W, W, W, W, W],
+    [W, E, E, E, E, E, E, E, W],
+    [W, E, W, W, E, W, W, E, W],
+    [W, E, B, B, E, B, B, E, W],
+    [W, E, W, W, E, W, W, E, W],
+    [W, E, B, B, E, B, B, E, W],
+    [W, E, W, W, A, W, W, G, W],
+    [W, W, W, W, W, W, W, W, W],
+    [W, W, W, W, W, R, L, U, D],
 ]
 layout7 = [
-    [W, W, W, W, W, W, W],
-    [W, E, E, E, E, E, W],
-    [W, E, W, E, W, E, W],
-    [W, E, W, E, W, E, W],
-    [W, G, E, A, E, E, W],
-    [W, W, W, W, W, W, W],
-    [W, W, W, R, L, U, D],
-]
-layout8 = [
-    [W, W, W, W, W, W, W, W, W],
-    [W, E, E, E, E, E, E, E, W],
-    [W, E, W, W, E, W, W, E, W],
-    [W, E, W, W, E, W, W, E, W],
-    [W, E, W, W, E, W, W, E, W],
-    [W, E, W, W, E, W, W, E, W],
-    [W, G, W, W, A, W, W, E, W],
-    [W, W, W, W, W, W, W, W, W],
-    [W, W, W, W, W, R, L, U, D],
-]
-layout9 = [
-    [W, W, W, W, W, W, W, W, W],
-    [W, E, E, E, E, E, E, E, W],
-    [W, E, W, W, E, W, W, E, W],
-    [W, E, W, W, E, W, W, E, W],
-    [W, E, W, W, E, W, W, E, W],
-    [W, E, W, W, E, W, W, E, W],
-    [W, E, W, W, A, W, W, G, W],
-    [W, W, W, W, W, W, W, W, W],
-    [W, W, W, W, W, R, L, U, D],
-]
-layout10 = [
-    [W, W, W, W, W, W, W, W, W],
-    [W, E, E, E, E, E, E, E, W],
-    [W, E, W, W, E, W, W, E, W],
-    [W, E, W, W, E, W, W, E, W],
-    [W, E, E, E, E, E, E, E, W],
-    [W, E, W, W, E, W, W, E, W],
-    [W, E, W, W, A, W, W, G, W],
-    [W, W, W, W, W, W, W, W, W],
-    [W, W, W, W, W, R, L, U, D],
-]
-layout11 = [
-    [W, W, W, W, W, W, W, W, W],
-    [W, E, E, E, E, E, E, E, W],
-    [W, E, W, W, E, W, W, E, W],
-    [W, E, W, W, E, W, W, E, W],
-    [W, E, E, E, E, E, E, E, W],
-    [W, E, W, W, E, W, W, E, W],
-    [W, G, W, W, A, W, W, E, W],
-    [W, W, W, W, W, W, W, W, W],
-    [W, W, W, W, W, R, L, U, D],
-]
-layout12 = [
-    [W, W, W, W, W, W, W, W, W],
-    [W, E, E, E, E, E, E, E, W],
-    [W, E, W, W, E, W, W, E, W],
-    [W, E, E, E, E, E, E, E, W],
-    [W, E, W, W, E, W, W, E, W],
-    [W, E, E, E, E, E, E, E, W],
-    [W, E, W, W, A, W, W, G, W],
-    [W, W, W, W, W, W, W, W, W],
-    [W, W, W, W, W, R, L, U, D],
-]
-layout13 = [
-    [W, W, W, W, W, W, W, W, W],
-    [W, E, E, E, E, E, E, E, W],
-    [W, E, W, W, E, W, W, E, W],
-    [W, E, E, E, E, E, E, E, W],
-    [W, E, W, W, E, W, W, E, W],
-    [W, E, E, E, E, E, E, E, W],
-    [W, G, W, W, A, W, W, E, W],
-    [W, W, W, W, W, W, W, W, W],
-    [W, W, W, W, W, R, L, U, D],
-]
-layout14 = [
     [W, W, W, W, W, W, W, W, W, W, W, W],
     [W, E, E, E, E, E, E, E, E, E, E, W],
     [W, E, E, E, E, E, E, E, E, E, E, W],
@@ -301,14 +238,14 @@ layout14 = [
     [W, W, W, W, W, W, W, W, W, W, W, W],
     [W, W, W, W, W, W, W, W, R, L, U, D],
 ]
-layout15 = [
+layout8 = [
     [W, W, W, W, W, W, W, W, W, W, W, W],
     [W, E, E, E, E, E, E, E, E, E, E, W],
     [W, E, E, E, E, E, E, E, E, E, E, W],
     [W, E, E, W, W, E, E, W, W, E, E, W],
     [W, E, E, W, W, E, E, W, W, E, E, W],
-    [W, E, E, W, W, E, E, W, W, E, E, W],
-    [W, E, E, W, W, E, E, W, W, E, E, W],
+    [W, E, E, B, B, E, E, B, B, E, E, W],
+    [W, E, E, B, B, E, E, B, B, E, E, W],
     [W, E, E, W, W, E, E, W, W, E, E, W],
     [W, E, E, W, W, E, E, W, W, E, E, W],
     [W, E, E, W, W, E, E, W, W, E, E, W],
@@ -317,21 +254,92 @@ layout15 = [
     [W, W, W, W, W, W, W, W, W, W, W, W],
     [W, W, W, W, W, W, W, W, R, L, U, D],
 ]
-layout16 = [
+layout9 = [
     [W, W, W, W, W, W, W, W, W, W, W, W],
     [W, E, E, E, E, E, E, E, E, E, E, W],
     [W, E, E, E, E, E, E, E, E, E, E, W],
     [W, E, E, W, W, E, E, W, W, E, E, W],
     [W, E, E, W, W, E, E, W, W, E, E, W],
-    [W, E, E, E, E, E, E, E, E, E, E, W],
-    [W, E, E, E, E, E, E, E, E, E, E, W],
+    [W, E, E, B, B, E, E, B, B, E, E, W],
     [W, E, E, W, W, E, E, W, W, E, E, W],
+    [W, E, E, B, B, E, E, B, B, E, E, W],
     [W, E, E, W, W, E, E, W, W, E, E, W],
-    [W, E, E, W, W, E, E, W, W, E, E, W],
+    [W, E, E, B, B, E, E, B, B, E, E, W],
     [W, E, E, W, W, E, E, W, W, E, E, W],
     [W, G, E, W, W, E, A, W, W, E, E, W],
     [W, W, W, W, W, W, W, W, W, W, W, W],
     [W, W, W, W, W, W, W, W, R, L, U, D],
+]
+
+# Testing
+layout10 = [
+    [W, W, W, W, W, W, W],
+    [W, E, E, E, E, E, W],
+    [W, E, W, E, W, E, W],
+    [W, E, W, E, W, E, W],
+    [W, E, W, A, W, G, W],
+    [W, W, W, W, W, W, W],
+    [W, W, W, R, L, U, D],
+]
+layout11 = [
+    [W, W, W, W, W, W, W],
+    [W, E, E, E, E, E, W],
+    [W, E, W, E, W, E, W],
+    [W, E, B, E, B, E, W],
+    [W, G, W, A, W, E, W],
+    [W, W, W, W, W, W, W],
+    [W, W, W, R, L, U, D],
+]
+layout12 = [
+    [W, W, W, W, W, W, W],
+    [W, E, E, E, E, E, W],
+    [W, E, B, E, B, E, W],
+    [W, E, W, E, W, E, W],
+    [W, E, W, A, W, G, W],
+    [W, W, W, W, W, W, W],
+    [W, W, W, R, L, U, D],
+]
+layout13 = [
+    [W, W, W, W, W, W, W],
+    [W, E, E, E, E, E, W],
+    [W, E, W, E, W, E, W],
+    [W, E, W, E, W, E, W],
+    [W, G, B, A, B, E, W],
+    [W, W, W, W, W, W, W],
+    [W, W, W, R, L, U, D],
+]
+layout14 = [
+    [W, W, W, W, W, W, W, W, W],
+    [W, E, E, E, E, E, E, E, W],
+    [W, E, W, W, E, W, W, E, W],
+    [W, E, W, W, E, W, W, E, W],
+    [W, E, W, W, E, W, W, E, W],
+    [W, E, W, W, E, W, W, E, W],
+    [W, G, W, W, A, W, W, E, W],
+    [W, W, W, W, W, W, W, W, W],
+    [W, W, W, W, W, R, L, U, D],
+]
+layout15 = [
+    [W, W, W, W, W, W, W, W, W],
+    [W, E, E, E, E, E, E, E, W],
+    [W, E, W, W, E, W, W, E, W],
+    [W, E, W, W, E, W, W, E, W],
+    [W, E, B, B, E, B, B, E, W],
+    [W, E, W, W, E, W, W, E, W],
+    [W, E, W, W, A, W, W, G, W],
+    [W, W, W, W, W, W, W, W, W],
+    [W, W, W, W, W, R, L, U, D],
+]
+layout16 = [
+    [W, W, W, W, W, W, W, W, W],
+    [W, E, E, E, E, E, E, E, W],
+    [W, E, W, W, E, W, W, E, W],
+    [W, E, B, B, E, B, B, E, W],
+    [W, E, W, W, E, W, W, E, W],
+    [W, E, B, B, E, B, B, E, W],
+    [W, G, W, W, A, W, W, E, W],
+    [W, W, W, W, W, W, W, W, W],
+    [W, W, W, W, W, R, L, U, D],
 ]
 layout17 = [
     [W, W, W, W, W, W, W, W, W, W, W, W],
@@ -339,8 +347,8 @@ layout17 = [
     [W, E, E, E, E, E, E, E, E, E, E, W],
     [W, E, E, W, W, E, E, W, W, E, E, W],
     [W, E, E, W, W, E, E, W, W, E, E, W],
-    [W, E, E, E, E, E, E, E, E, E, E, W],
-    [W, E, E, E, E, E, E, E, E, E, E, W],
+    [W, E, E, W, W, E, E, W, W, E, E, W],
+    [W, E, E, W, W, E, E, W, W, E, E, W],
     [W, E, E, W, W, E, E, W, W, E, E, W],
     [W, E, E, W, W, E, E, W, W, E, E, W],
     [W, E, E, W, W, E, E, W, W, E, E, W],
@@ -355,11 +363,11 @@ layout18 = [
     [W, E, E, E, E, E, E, E, E, E, E, W],
     [W, E, E, W, W, E, E, W, W, E, E, W],
     [W, E, E, W, W, E, E, W, W, E, E, W],
-    [W, E, E, E, E, E, E, E, E, E, E, W],
+    [W, E, E, B, B, E, E, B, B, E, E, W],
+    [W, E, E, B, B, E, E, B, B, E, E, W],
     [W, E, E, W, W, E, E, W, W, E, E, W],
-    [W, E, E, E, E, E, E, E, E, E, E, W],
     [W, E, E, W, W, E, E, W, W, E, E, W],
-    [W, E, E, E, E, E, E, E, E, E, E, W],
+    [W, E, E, W, W, E, E, W, W, E, E, W],
     [W, E, E, W, W, E, E, W, W, E, E, W],
     [W, G, E, W, W, E, A, W, W, E, E, W],
     [W, W, W, W, W, W, W, W, W, W, W, W],
@@ -371,11 +379,11 @@ layout19 = [
     [W, E, E, E, E, E, E, E, E, E, E, W],
     [W, E, E, W, W, E, E, W, W, E, E, W],
     [W, E, E, W, W, E, E, W, W, E, E, W],
-    [W, E, E, E, E, E, E, E, E, E, E, W],
+    [W, E, E, B, B, E, E, B, B, E, E, W],
     [W, E, E, W, W, E, E, W, W, E, E, W],
-    [W, E, E, E, E, E, E, E, E, E, E, W],
+    [W, E, E, B, B, E, E, B, B, E, E, W],
     [W, E, E, W, W, E, E, W, W, E, E, W],
-    [W, E, E, E, E, E, E, E, E, E, E, W],
+    [W, E, E, B, B, E, E, B, B, E, E, W],
     [W, E, E, W, W, E, E, W, W, E, E, W],
     [W, E, E, W, W, E, A, W, W, E, G, W],
     [W, W, W, W, W, W, W, W, W, W, W, W],
