@@ -147,6 +147,9 @@ D = DOWN_ARROW
 L = LEFT_ARROW
 R = RIGHT_ARROW
 
+
+# Training
+
 layout0 = [
     [U, D, L, R, W, W, W],
     [W, W, W, W, W, W, W],
@@ -175,36 +178,32 @@ layout2 = [
     [W, W, W, W, W, W, W],
 ]
 layout3 = [
+    [U, D, L, R, W, W, W],
+    [W, W, W, W, W, W, W],
+    [W, G, E, E, E, E, W],
+    [W, E, W, E, W, E, W],
+    [W, E, W, E, W, E, W],
+    [W, E, W, A, W, E, W],
+    [W, W, W, W, W, W, W],
+]
+layout4 = [
+    [U, D, L, R, W, W, W],
+    [W, W, W, W, W, W, W],
+    [W, E, E, E, G, E, W],
+    [W, E, W, E, W, E, W],
+    [W, E, W, E, W, E, W],
+    [W, A, W, E, W, E, W],
+    [W, W, W, W, W, W, W],
+]
+layout5 = [
     [U, D, L, R, W, W, W, W, W, W, W],
     [W, W, W, W, W, W, W, W, W, W, W],
-    [W, E, E, E, E, G, E, E, E, E, W],
+    [W, E, E, E, E, E, E, E, G, E, W],
     [W, E, W, E, W, E, W, E, W, E, W],
     [W, E, W, E, W, E, W, E, W, E, W],
     [W, E, W, E, W, E, W, E, W, E, W],
     [W, E, W, E, W, E, W, E, W, E, W],
     [W, A, W, E, W, E, W, E, W, E, W],
-    [W, W, W, W, W, W, W, W, W, W, W],
-]
-layout4 = [
-    [U, D, L, R, W, W, W, W, W, W, W],
-    [W, W, W, W, W, W, W, W, W, W, W],
-    [W, E, E, E, E, G, E, E, E, E, W],
-    [W, E, W, E, W, E, W, E, W, E, W],
-    [W, E, W, E, W, E, W, E, W, E, W],
-    [W, E, W, E, W, E, W, E, W, E, W],
-    [W, E, W, E, W, E, W, E, W, E, W],
-    [W, E, W, A, W, E, W, E, W, E, W],
-    [W, W, W, W, W, W, W, W, W, W, W],
-]
-layout5 = [
-    [U, D, L, R, W, W, W, W, W, W, W],
-    [W, W, W, W, W, W, W, W, W, W, W],
-    [W, E, E, E, E, G, E, E, E, E, W],
-    [W, E, W, E, W, E, W, E, W, E, W],
-    [W, E, W, E, W, E, W, E, W, E, W],
-    [W, E, W, E, W, E, W, E, W, E, W],
-    [W, E, W, E, W, E, W, E, W, E, W],
-    [W, E, W, E, W, A, W, E, W, E, W],
     [W, W, W, W, W, W, W, W, W, W, W],
 ]
 layout6 = [
@@ -215,7 +214,7 @@ layout6 = [
     [W, E, W, E, W, E, W, E, W, E, W],
     [W, E, W, E, W, E, W, E, W, E, W],
     [W, E, W, E, W, E, W, E, W, E, W],
-    [W, E, W, E, W, E, W, A, W, E, W],
+    [W, E, W, A, W, E, W, E, W, E, W],
     [W, W, W, W, W, W, W, W, W, W, W],
 ]
 layout7 = [
@@ -226,11 +225,137 @@ layout7 = [
     [W, E, W, E, W, E, W, E, W, E, W],
     [W, E, W, E, W, E, W, E, W, E, W],
     [W, E, W, E, W, E, W, E, W, E, W],
+    [W, E, W, E, W, A, W, E, W, E, W],
+    [W, W, W, W, W, W, W, W, W, W, W],
+]
+layout8 = [
+    [U, D, L, R, W, W, W, W, W, W, W],
+    [W, W, W, W, W, W, W, W, W, W, W],
+    [W, E, E, G, E, E, E, E, E, E, W],
+    [W, E, W, E, W, E, W, E, W, E, W],
+    [W, E, W, E, W, E, W, E, W, E, W],
+    [W, E, W, E, W, E, W, E, W, E, W],
+    [W, E, W, E, W, E, W, E, W, E, W],
+    [W, E, W, E, W, E, W, A, W, E, W],
+    [W, W, W, W, W, W, W, W, W, W, W],
+]
+layout9 = [
+    [U, D, L, R, W, W, W, W, W, W, W],
+    [W, W, W, W, W, W, W, W, W, W, W],
+    [W, E, E, E, E, E, G, E, E, E, W],
+    [W, E, W, E, W, E, W, E, W, E, W],
+    [W, E, W, E, W, E, W, E, W, E, W],
+    [W, E, W, E, W, E, W, E, W, E, W],
+    [W, E, W, E, W, E, W, E, W, E, W],
     [W, E, W, E, W, E, W, E, W, A, W],
     [W, W, W, W, W, W, W, W, W, W, W],
 ]
 
+# Test
+layout10 = [
+    [U, D, L, R, W, W, W],
+    [W, W, W, W, W, W, W],
+    [W, E, G, E, E, E, W],
+    [W, E, W, E, W, E, W],
+    [W, E, W, E, W, E, W],
+    [W, A, W, E, W, E, W],
+    [W, W, W, W, W, W, W],
+]
+layout11 = [
+    [U, D, L, R, W, W, W],
+    [W, W, W, W, W, W, W],
+    [W, E, G, E, E, E, W],
+    [W, E, W, E, W, E, W],
+    [W, E, W, E, W, E, W],
+    [W, E, W, A, W, E, W],
+    [W, W, W, W, W, W, W],
+]
+layout12 = [
+    [U, D, L, R, W, W, W],
+    [W, W, W, W, W, W, W],
+    [W, E, E, E, E, G, W],
+    [W, E, W, E, W, E, W],
+    [W, E, W, E, W, E, W],
+    [W, E, W, E, W, A, W],
+    [W, W, W, W, W, W, W],
+]
+layout13 = [
+    [U, D, L, R, W, W, W],
+    [W, W, W, W, W, W, W],
+    [W, E, E, E, G, E, W],
+    [W, E, W, E, W, E, W],
+    [W, E, W, E, W, E, W],
+    [W, E, W, A, W, E, W],
+    [W, W, W, W, W, W, W],
+]
+layout14 = [
+    [U, D, L, R, W, W, W],
+    [W, W, W, W, W, W, W],
+    [W, E, E, E, G, E, W],
+    [W, E, W, E, W, E, W],
+    [W, E, W, E, W, E, W],
+    [W, A, W, E, W, E, W],
+    [W, W, W, W, W, W, W],
+]
+layout15 = [
+    [U, D, L, R, W, W, W, W, W, W, W],
+    [W, W, W, W, W, W, W, W, W, W, W],
+    [W, E, E, G, E, E, E, E, E, E, W],
+    [W, E, W, E, W, E, W, E, W, E, W],
+    [W, E, W, E, W, E, W, E, W, E, W],
+    [W, E, W, E, W, E, W, E, W, E, W],
+    [W, E, W, E, W, E, W, E, W, E, W],
+    [W, A, W, E, W, E, W, E, W, E, W],
+    [W, W, W, W, W, W, W, W, W, W, W],
+]
+layout16 = [
+    [U, D, L, R, W, W, W, W, W, W, W],
+    [W, W, W, W, W, W, W, W, W, W, W],
+    [W, E, E, E, E, E, E, E, G, E, W],
+    [W, E, W, E, W, E, W, E, W, E, W],
+    [W, E, W, E, W, E, W, E, W, E, W],
+    [W, E, W, E, W, E, W, E, W, E, W],
+    [W, E, W, E, W, E, W, E, W, E, W],
+    [W, E, W, A, W, E, W, E, W, E, W],
+    [W, W, W, W, W, W, W, W, W, W, W],
+]
+layout17 = [
+    [U, D, L, R, W, W, W, W, W, W, W],
+    [W, W, W, W, W, W, W, W, W, W, W],
+    [W, E, G, E, E, E, E, E, E, E, W],
+    [W, E, W, E, W, E, W, E, W, E, W],
+    [W, E, W, E, W, E, W, E, W, E, W],
+    [W, E, W, E, W, E, W, E, W, E, W],
+    [W, E, W, E, W, E, W, E, W, E, W],
+    [W, E, W, E, W, A, W, E, W, E, W],
+    [W, W, W, W, W, W, W, W, W, W, W],
+]
+layout18 = [
+    [U, D, L, R, W, W, W, W, W, W, W],
+    [W, W, W, W, W, W, W, W, W, W, W],
+    [W, E, E, E, E, E, E, E, G, E, W],
+    [W, E, W, E, W, E, W, E, W, E, W],
+    [W, E, W, E, W, E, W, E, W, E, W],
+    [W, E, W, E, W, E, W, E, W, E, W],
+    [W, E, W, E, W, E, W, E, W, E, W],
+    [W, E, W, E, W, E, W, A, W, E, W],
+    [W, W, W, W, W, W, W, W, W, W, W],
+]
+layout19 = [
+    [U, D, L, R, W, W, W, W, W, W, W],
+    [W, W, W, W, W, W, W, W, W, W, W],
+    [W, E, E, G, E, E, E, E, E, E, W],
+    [W, E, W, E, W, E, W, E, W, E, W],
+    [W, E, W, E, W, E, W, E, W, E, W],
+    [W, E, W, E, W, E, W, E, W, E, W],
+    [W, E, W, E, W, E, W, E, W, E, W],
+    [W, E, W, E, W, E, W, E, W, A, W],
+    [W, W, W, W, W, W, W, W, W, W, W],
+]
+
+
 layouts = [layout0, layout1, layout2, layout3, layout4, layout5, layout6,
-           layout7]
+           layout7, layout8, layout9, layout10, layout11, layout12, layout13,
+           layout14, layout15, layout16, layout17, layout18, layout19]
 
 create_gym_envs(MazeNavigation_simple, layouts, globals())
